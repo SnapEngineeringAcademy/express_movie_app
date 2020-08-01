@@ -9,7 +9,6 @@ const moviesRouter = require('./routes/movies');
 
 const app = express();
 
-// view engine setup
 app.set('view engine', 'ejs');
 
 app.use(express.json());
