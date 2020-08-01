@@ -1,4 +1,4 @@
-# Foobar
+# Movie App
 
 SEA Movie App is an app for viewing your favorite movie posters.
 
