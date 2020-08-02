@@ -16,8 +16,11 @@ touch .env
 
 Copy and paste this in to your .env file and add your api key
 
+```
 TMDB_API_KEY=YOUR API KEY HERE
+```
 
+Then, in your terminal:
 ```bash
 npm install
 node app.js
