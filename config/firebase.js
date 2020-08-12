@@ -26,6 +26,10 @@ class Firebase {
         return this.auth.createUserWithEmailAndPassword(email, password)
     }
 
+    doSignInWithEmailAndPassword = (email, password) => {
+        return this.auth.signInWithEmailAndPassword(email, password)
+    }
+
     // ** USER API **
 
     doCreateUser = (id, user) => {
