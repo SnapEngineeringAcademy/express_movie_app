@@ -1,8 +1,5 @@
-<%- include('../partials/header') %>
-<h1>Popular Movies</h1>
-<div>
-  <% movies.forEach(m => { %>
-  <div><a href="/movies/<%= m.id %>"><%= m.title %></a></div>
-  <% }) %>
-</div>
-<%- include('../partials/footer') %>
+<div>SHOW PAGE</div>
+<div> this is the title: <%= poke.name %></div>
+<% poke.types.forEach(t => { %>
+<%= t.type.name %>
+<% }) %>
