@@ -1,5 +1,6 @@
-<div>SHOW PAGE</div>
-<div> this is the title: <%= poke.name %></div>
-<% poke.types.forEach(t => { %>
-<%= t.type.name %>
+<%- include('../partials/header.ejs') %>
+<h1>this is the movie ejs page</h1>
+
+<% movies.forEach((movie) => { %>
+<li><a href="/movies/<%= movie.id %>"><%= movie.title %></a></li>
 <% }) %>

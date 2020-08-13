@@ -3,8 +3,9 @@
 <div>
   <h1><%= movie.title %></h1>
   <p><%= movie.overview %></p>
-  <img
-    src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>"
-  />
+  <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" />
 </div>
+<form action="/movies/<%= movie.id %>" method="POST">
+  <button>Like Movie</button>
+</form>
 <%- include('../partials/footer') %>

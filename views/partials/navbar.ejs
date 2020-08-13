@@ -1,0 +1,11 @@
+<div>
+  <a href="/">HOME</a>
+  <a href="/movies">MOVIES</a>
+  <% if(user) { %>
+  <p>hello <%=user.email %> <a href="#">LOGOUT</a></p>
+
+  <% } else { %>
+  <a href="/login">LOGIN</a>
+  <a href="/signup">SIGNUP</a>
+  <%}%>
+</div>
