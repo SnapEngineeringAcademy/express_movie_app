@@ -39,6 +39,40 @@ class Firebase {
     doGetUser = id => {
         return this.db.collection('users').doc(id).get()
     }
+
+    // ** Movie APi ***
+
+    doGetMovie = (movieId) => {
+        return this.db
+            .collection('movies')
+            .doc(movieId)
+            .get()
+    }
+
+    doLikeMovie = (movieId, userId) => {
+        return this.db
+            .collection('movies')
+            .doc(movieId)
+            .set(
+                {
+                    likes: app.firestore.FieldValue.arrayUnion(userId),
+                },
+                { merge: true },
+            );
+    };
+
+    doUnlikeMovie = (movieId, userId) => {
+        console.log(movieId, userId)
+        return this.db
+            .collection('movies')
+            .doc(movieId)
+            .set(
+                {
+                    likes: app.firestore.FieldValue.arrayRemove(userId),
+                },
+                { merge: true },
+            );
+    };
 }
 
 const firebase = new Firebase()

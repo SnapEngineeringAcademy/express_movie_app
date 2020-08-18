@@ -8,31 +8,42 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'Movie App', error: req.app.locals.err });
 });
 
-router.get('/signin', (req, res) => {
-  res.render('signin/index', {
+router.get('/login', (req, res) => {
+  if (req.session.user) {
+    return res.redirect(`/users/${req.session.user.uid}`)
+  }
+  res.render('login/index', {
     error: req.app.locals.err
   })
 })
 
-router.post('/signin', (req, res) => {
+router.post('/login', (req, res) => {
   const { email, password } = req.body
   req.app.locals.err = ""
   firebase.doSignInWithEmailAndPassword(email, password)
     .then(authUser => {
-      console.log(authUser)
+
       res.redirect(`/users/${authUser.user.uid}`)
     })
     .catch(err => {
       req.app.locals.err = err.message
-      res.redirect('/signin')
+      res.redirect('/login')
     })
+})
+
+router.get('/signup', (req, res) => {
+  if (req.session.user) {
+    return res.redirect(`/users/${req.session.user.uid}`)
+  }
+  res.render('signup/index', {
+    error: req.app.locals.err
+  })
 })
 
 router.post('/signup', (req, res) => {
   req.app.locals.err = ""
   firebase.doCreateUserWithEmailAndPassword(req.body.email, req.body.password)
     .then(authUser => {
-      console.log(authUser.user.uid)
       firebase.doCreateUser(authUser.user.uid, {
         email: req.body.email,
         username: req.body.username
@@ -43,15 +54,18 @@ router.post('/signup', (req, res) => {
       })
     }).catch(err => {
       req.app.locals.err = err.message
-      res.redirect('/')
+      res.redirect('/signup')
     })
 })
 
 router.get('/users/:id', async (req, res) => {
-  const user = await firebase.doGetUser(req.params.id)
-  console.log(user.data())
+  const user = await (await firebase.doGetUser(req.params.id)).data()
+  req.session.user = {
+    ...user,
+    uid: req.params.id
+  }
   res.render('users/show', {
-    user: user.data()
+    user: user
   })
 })
 

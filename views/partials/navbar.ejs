@@ -1,0 +1,14 @@
+<div>
+    <a href="/">HOME</a>
+    <a href="/movies">MOVIES</a>
+    <% if(user) { %>
+    <a href='/users/<%= user.uid %>'><%= user.username.toUpperCase() %></a>
+    <%} else { %>
+    <a href="/login">LOGIN</a>
+    <a href="/signup">SIGNUP</a>
+    <%}%> 
+    
+
+    
+    
+</div>
