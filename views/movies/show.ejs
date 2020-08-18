@@ -3,11 +3,11 @@
 <div>
   <h1><%= movie.title %></h1>
   <p><%= movie.overview %></p>
-  <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" />
+  <img
+    src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>"
+  />
 </div>
-<% if(user) { %>
-<% likes.forEach(l => { %>
-<% if(l === user.uid) { %>
+<% if(user) { %> <% likes.forEach(l => { %> <% if(l === user.uid) { %>
 <form action="/movies/<%= movie.id %>?_method=DELETE" method="POST">
   <button>Not Like Movie</button>
 </form>
@@ -15,14 +15,8 @@
 <form action="/movies/<%= movie.id %>" method="POST">
   <button>Like Movie</button>
 </form>
-<%}%>
-<% }) %>
-
-<% if(user && likes.length === 0) { %>
+<%}%> <% }) %> <% if(user && likes.length === 0) { %>
 <form action="/movies/<%= movie.id %>" method="POST">
   <button>Like Movie</button>
 </form>
-<% } %>
-
-<% } %>
-<%- include('../partials/footer') %>
+<% } %> <% } %> <%- include('../partials/footer') %>
